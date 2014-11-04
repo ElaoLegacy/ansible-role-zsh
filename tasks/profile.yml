@@ -1,0 +1,27 @@
+---
+
+- name: zprofile directory
+  file: >
+    path=/etc/zprofile.d
+    state=directory
+  sudo: yes
+
+- name: zprofile 1
+  lineinfile: >
+    dest=/etc/zsh/zprofile
+    line='for file in /etc/zprofile.d/*; do'
+  sudo: yes
+
+- name: zprofile 2
+  lineinfile: >
+    dest=/etc/zsh/zprofile
+    line='  source "$file"'
+    insertafter='^for file in /etc/zprofile.d/\*; do'
+  sudo: yes
+
+- name: zprofile 3
+  lineinfile: >
+    dest=/etc/zsh/zprofile
+    line='done'
+    insertafter='^  source "\$file"'
+  sudo: yes
