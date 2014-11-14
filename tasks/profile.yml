@@ -6,22 +6,7 @@
     state=directory
   sudo: yes
 
-- name: zprofile 1
-  lineinfile: >
-    dest=/etc/zsh/zprofile
-    line='for file in /etc/zprofile.d/*; do'
-  sudo: yes
-
-- name: zprofile 2
-  lineinfile: >
-    dest=/etc/zsh/zprofile
-    line='  source "$file"'
-    insertafter='^for file in /etc/zprofile.d/\*; do'
-  sudo: yes
-
-- name: zprofile 3
-  lineinfile: >
-    dest=/etc/zsh/zprofile
-    line='done'
-    insertafter='^  source "\$file"'
+- name: copy zprofile 
+  copy: >
+    src=zprofile dest=/etc/zsh/zprofile owner=root group=root mode=0644
   sudo: yes
